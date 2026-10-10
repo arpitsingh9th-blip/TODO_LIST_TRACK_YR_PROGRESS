@@ -1,0 +1,3267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TODO LIST - Dark Task Manager</title>
+        <meta
+            name="keywords"
+            content="online todo list, minimalist todo app, no login todo, web todo list, todo manager, task scheduler, memo app, browser-based todo, instant access, secure storage, personal todo, professional todo, work and life assistant">
+        <meta
+            name="description"
+            content="uiineed's Todo List Online is a minimalist, no-login-required web app that helps you manage your tasks and schedules effortlessly. Store your todos securely in your browser's local cache, and enjoy a seamless experience without the hassle of sign-ups or logins. Perfect for both personal and professional use!">
+        <link type="favicon" rel="shortcut icon" href="public/img/favicon.png"/>
+        <style>
+/* normalize.css v8.0.1 */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+  
+  /* Sections
+     ========================================================================== */
+  
+  /**
+   * Remove the margin in all browsers.
+   */
+  
+  body {
+    margin: 0;
+    /*这一句是用来解决在安卓上的点击出现篮框问题*/
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+  }
+
+  /**
+   * Render the `main` element consistently in IE.
+   */
+  
+  main {
+    display: block;
+  }
+  
+  /**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+  
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  
+  /* Grouping content
+     ========================================================================== */
+  
+  /**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+  
+  hr {
+    box-sizing: content-box; /* 1 */
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  pre {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /* Text-level semantics
+     ========================================================================== */
+  
+  /**
+   * Remove the gray background on active links in IE 10.
+   */
+  
+  a {
+    background-color: transparent;
+  }
+  
+  /**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+  
+  abbr[title] {
+    border-bottom: none; /* 1 */
+    text-decoration: underline; /* 2 */
+    text-decoration: underline dotted; /* 2 */
+  }
+  
+  /**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+  
+  b,
+  strong {
+    font-weight: bolder;
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  code,
+  kbd,
+  samp {
+    font-family: monospace, monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+  
+  /**
+   * Add the correct font size in all browsers.
+   */
+  
+  small {
+    font-size: 80%;
+  }
+  
+  /**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+  
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  
+  sub {
+    bottom: -0.25em;
+  }
+  
+  sup {
+    top: -0.5em;
+  }
+  
+  /* Embedded content
+     ========================================================================== */
+  
+  /**
+   * Remove the border on images inside links in IE 10.
+   */
+  
+  img {
+    border-style: none;
+  }
+  
+  /* Forms
+     ========================================================================== */
+  
+  /**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+  }
+  
+  /**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+  
+  button,
+  input { /* 1 */
+    overflow: visible;
+  }
+  
+  /**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+  
+  button,
+  select { /* 1 */
+    text-transform: none;
+  }
+  
+  /**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+  
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    -webkit-appearance: button;
+  }
+  
+  /**
+   * Remove the inner border and padding in Firefox.
+   */
+  
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+  
+  /**
+   * Restore the focus styles unset by the previous rule.
+   */
+  
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+  
+  /**
+   * Correct the padding in Firefox.
+   */
+  
+  fieldset {
+    padding: 0.35em 0.75em 0.625em;
+  }
+  
+  /**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+  
+  legend {
+    box-sizing: border-box; /* 1 */
+    display: table; /* 1 */
+    max-width: 100%; /* 1 */
+    padding: 0; /* 3 */
+    white-space: normal; /* 1 */
+  }
+  
+  /**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+  
+  progress {
+    vertical-align: baseline;
+  }
+  
+  /**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+  
+  textarea {
+    overflow: auto;
+  }
+  
+  /**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+  
+  [type="checkbox"],
+  [type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+  }
+  
+  /**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+  
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+  
+  /**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+  
+  [type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+  }
+  
+  /**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+  
+  [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  
+  /**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+  
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+  }
+  
+  /* Interactive
+     ========================================================================== */
+  
+  /*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+  
+  details {
+    display: block;
+  }
+  
+  /*
+   * Add the correct display in all browsers.
+   */
+  
+  summary {
+    display: list-item;
+  }
+  
+  /* Misc
+     ========================================================================== */
+  
+  /**
+   * Add the correct display in IE 10+.
+   */
+  
+  template {
+    display: none;
+  }
+  
+  /**
+   * Add the correct display in IE 10.
+   */
+  
+  [hidden] {
+    display: none;
+  }
+
+  
+</style>
+        <style>
+/* style.css - merged from uploaded project */
+:root {
+  --body-bg: #e8f6ff;
+  --border-radius: 12px;
+  --border: 2px solid #33322E;
+  --box-shadow: 4px 4px 0px #33322E;
+  --box-shadow-reverse: -4px 4px 0px #33322E;
+  --padding: 20px 24px;
+  --btn-padding: 12px 24px;
+  --btn-small-padding: 10px 20px;
+  --font:"DM Sans","PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif, HYWenHei-GEW !important;
+  --font-color: #33322E;
+  --font-size-base: 16px;
+  --placeholder: rgba(51, 50, 46, 0.535);
+  --font-color-complete: rgba(51, 50, 46, 0.535);
+  --bg-normal: #F9F3E5;
+  --bg-submit: #ffd6e9;
+  --bg-completed: #D0F4F0;
+  --bg-discard: #FFF0EE;
+  --bg-deleted: #ddd;
+  --bg-edit: #fbeef3;
+  --normal: #f5d99e;
+  --completed: #8CD4CB;
+  --deleted: #F6A89E;
+  --black: #33322E;
+}
+@media only screen and ( max-width: 768px) {
+  :root {
+    --font-size-base: 16px;
+    --padding: 16px 20px;
+    --btn-padding: 12px 18px;
+    --btn-small-padding: 10px 15px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+html {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  font-family: var(--font);
+  /* IE 10+ */
+  background: #fff;
+  font-size: 16px;
+  background: var(--body-bg);
+  font-size: var(--font-size-base);
+  color: var(--font-color);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html ::-webkit-scrollbar {
+  display: none;
+}
+@media only screen and ( max-width: 768px) {
+  html {
+    font-family: "PingFang SC", miui, system-ui, -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+
+/* Firefox 4-18 */
+:-moz-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+
+/* Firefox 19-50 */
+::-moz-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+
+/* - Internet Explorer 10
+   - Internet Explorer Mobile 10-11 */
+:-ms-input-placeholder {
+  color: var(--placeholder) !important;
+  font-weight: 400 !important;
+}
+
+/* Edge (also supports ::-webkit-input-placeholder) */
+::-ms-input-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+
+/* CSS Working Draft */
+::-webkit-input-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+::-moz-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+:-ms-input-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+::-ms-input-placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+::placeholder {
+  color: var(--placeholder);
+  font-weight: 400;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+input {
+  border-radius: var(--border-radius);
+  border: var(--border);
+  padding: var(--btn-small-padding);
+  display: inline-block;
+  cursor: pointer;
+  background: #fff;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+}
+
+button,
+a,
+input {
+  color: var(--font-color);
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.btn {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--btn-padding);
+  text-align: center;
+  display: block;
+  position: relative;
+}
+
+.btn-small {
+  padding: var(--btn-small-padding);
+  font-size: 14px;
+  border: 2px solid var(--black);
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+@media only screen and ( max-width: 992px) {
+  .container {
+    max-width: 600px;
+  }
+}
+@media only screen and ( max-width: 768px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+.todo-app {
+  margin: 0 auto;
+}
+
+.header {
+  margin: 0 auto 24px;
+}
+@media only screen and ( max-width: 768px) {
+  .header {
+    margin: 0 auto 16px;
+  }
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.bg-pattern {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  background-color: #FFF7DC;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse' patternTransform='scale(0.25)'%3E%3Ccircle data-color='outline' fill='none' stroke='%23828D99' stroke-width='25' cx='50' cy='50' r='.5'%3E%3C/circle%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  opacity: 0.08;
+}
+
+.todo-wrapper {
+  width: 100%;
+  margin: 40px auto;
+}
+@media only screen and ( max-width: 768px) {
+  .todo-wrapper {
+    margin: 48px auto;
+  }
+}
+
+.todo-list-box {
+  position: relative;
+  background: #fff;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  margin: 0;
+  padding-top: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.todo-list {
+  padding: 32px 36px 36px;
+  min-height: 381px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+@media only screen and ( max-width: 768px) {
+  .todo-list {
+    padding: 20px 16px 24px;
+    min-height: 280px;
+    min-height: calc(100vh - 272px);
+  }
+}
+@media only screen and (max-width: 350px) {
+  .todo-list {
+    min-height: 320px;
+  }
+}
+
+.title {
+  position: relative;
+  font-weight: 800;
+  -webkit-text-stroke: 2px var(--black);
+  color: var(--bg-normal);
+  text-shadow: 4px 4px 0 var(--font-color);
+  letter-spacing: 1px;
+  font-size: 44px;
+  margin: 0 auto 12px;
+  width: 200px;
+  user-select: none;
+}
+
+.title img {
+  display: inline-block;
+  width: auto;
+  height: 52px;
+  padding: 0;
+}
+
+.ani-vector {
+  position: absolute;
+  left: -60px;
+  top: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media only screen and ( max-width: 768px) {
+  .ani-vector {
+    top: 24px;
+  }
+}
+.ani-vector span {
+  -webkit-transform: rotateZ(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotateZ(45deg);
+  margin: 0 7px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--black);
+  background-color: var(--bg-submit);
+  display: inline-block;
+  border-radius: 1px;
+  -webkit-animation: zooming 8s ease-in-out infinite;
+          animation: zooming 8s ease-in-out infinite;
+}
+.ani-vector span:nth-child(2) {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+.todo-list li {
+  position: relative;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  width: 100%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* Drag css */
+.drag-enter-active {
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.drag-enter-to {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.drag-leave {
+  opacity: 0;
+  -webkit-transform: translateY(18px);
+      -ms-transform: translateY(18px);
+          transform: translateY(18px);
+}
+
+.drag-leave-active {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+.drag-move {
+  -webkit-transition: all 0.65s ease;
+  transition: all 0.65s ease;
+}
+
+/* End drag css */
+.todo-list li:last-child {
+  margin-bottom: 0;
+}
+
+.todo-list li:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.bar-message {
+  position: relative;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: flex-start;
+  border-bottom: var(--border);
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  overflow: hidden;
+  user-select: none;
+}
+.bar-message:hover {
+  background: var(--bg-normal);
+}
+@media only screen and ( max-width: 768px) {
+  .bar-message .btn-allFinish {
+    display: none;
+  }
+  .bar-message .bar-message-text {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.bar-message > div {
+  width: 100%;
+  height: 100%;
+}
+
+.bar-bottom {
+  border: 0;
+  border-top: var(--border);
+}
+
+.add-todo {
+  border: var(--border);
+}
+
+.add-content-wrapper {
+  position: relative;
+  user-select: none;
+}
+@media only screen and ( max-width: 768px) {
+  .add-content-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 95%;
+    margin: 0 auto;
+    z-index: 99;
+    padding: 40px 0px 20px;
+    background-image: -ms-linear-gradient(90deg, rgb(234, 246, 252) 0%, rgba(234, 246, 252, 0) 100%);
+  }
+}
+
+.tips {
+  margin-top: 8px;
+  padding-left: 12px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.empty-tips {
+  text-align: left;
+  max-width: 480px;
+  width: 90%;
+  margin: 20px auto;
+  position: absolute;
+  top: 15%;
+  left: 8%;
+  font-size: 16px;
+  color: #606060;
+  line-height: 1.6;
+  letter-spacing: 0.24px;
+}
+@media only screen and ( max-width: 768px) {
+  .empty-tips {
+    margin-top: 0;
+    left: 6%;
+    font-size: 17px;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .empty-tips {
+    left: 6%;
+    font-size: 14px;
+  }
+}
+
+.empty-tips li {
+  margin: 2px 0 8px;
+}
+
+.edit-todo-wrapper {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.edit-todo {
+  padding: var(--padding);
+  width: 100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+  padding-left: 56px;
+  padding-right: 56px;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border: 0;
+}
+
+.submit-btn {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 60px;
+  line-height: 60px;
+  width: 96px;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  border: 0;
+  border-left: var(--border);
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  background: #f4d799;
+  background: var(--bg-submit);
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  font-size: 18px;
+}
+@media only screen and ( max-width: 768px) {
+  .submit-btn {
+    margin: 40px 0;
+  }
+}
+
+.submit-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.add-content {
+  width: 100%;
+  padding: 0;
+  font-size: 18px;
+  cursor: text;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  height: 64px;
+  line-height: 64px;
+  text-indent: 12px;
+  padding-right: 118px;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+@media only screen and ( max-width: 768px) {
+  .add-content {
+    padding-right: 108px;
+  }
+}
+
+.add-content:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.add-content:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.todo-content {
+  padding: var(--padding);
+  background: var(--bg-normal);
+  border-radius: var(--border-radius);
+  width: 100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  padding-left: 56px;
+  padding-right: 56px;
+  cursor: pointer;
+  min-height: 60px;
+}
+
+.todo-btn {
+  position: absolute;
+  background: none;
+  display: block;
+  cursor: pointer;
+  border: var(--border);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.todo-btn:hover {
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  -webkit-transform: translate(-2px, -2px);
+      -ms-transform: translate(-2px, -2px);
+          transform: translate(-2px, -2px);
+}
+
+.btn-edit-submit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: var(--bg-submit);
+  right: 12px;
+  top: 16px;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+}
+
+.btn-delete {
+  background: #fff;
+  right: 12px;
+  top: 16px;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--border-radius);
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn-delete:hover {
+  background: var(--deleted);
+}
+
+.btn-delete img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.btn-finish {
+  left: 14px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+.btn-finish:hover {
+  background: var(--completed);
+  -webkit-box-shadow: var(--box-shadow-reverse);
+          box-shadow: var(--box-shadow-reverse);
+  -webkit-transform: translate(2px, -2px);
+      -ms-transform: translate(2px, -2px);
+          transform: translate(2px, -2px);
+}
+
+.btn-unfinish img {
+  position: relative;
+  left: 4px;
+  top: 2px;
+  width: 26px;
+  height: auto;
+}
+
+.btn-unfinish {
+  left: 14px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: var(--completed);
+}
+.btn-unfinish:hover {
+  -webkit-box-shadow: var(--box-shadow-reverse);
+          box-shadow: var(--box-shadow-reverse);
+  -webkit-transform: translate(2px, -2px);
+      -ms-transform: translate(2px, -2px);
+          transform: translate(2px, -2px);
+}
+
+.btn-restore {
+  background: #fff;
+  right: 12px;
+  top: 16px;
+  height: 30px;
+  width: 30px;
+  border-radius: var(--border-radius);
+  border: var(--border);
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn-restore img {
+  display: block;
+  width: 16px;
+  height: auto;
+}
+
+.btn-allFinish {
+  display: inline-block;
+  background: var(--completed);
+  border: 0;
+  border-radius: 0;
+  border-top-left-radius: var(--border-radius);
+  border-right: var(--border);
+  margin: 0;
+  min-width: 24%;
+}
+
+.bar-message-text {
+  display: inline-block;
+  text-align: center;
+  font-weight: 600;
+  padding: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 44px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.slogan-input {
+  width: 100%;
+  border: none;
+  padding: 0 12px;
+  background: var(--bg-normal);
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+  line-height: 44px;
+  height: 44px;
+  cursor: text;
+}
+
+.slogan-btn {
+  position: absolute;
+  right: 16px;
+  top: 6px;
+}
+
+/**
+ * Footer
+ */
+.nav {
+  position: fixed;
+  right: 36px;
+  top: 8px;
+  z-index: 9999;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  user-select: none;
+}
+@media (max-width: 767px) {
+  .nav {
+    right: 16px;
+    top: 4px;
+  }
+}
+
+.about .info-ico {
+  position: relative;
+  z-index: 9999;
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: flex-start;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.about .info-ico img {
+  width: auto;
+  height: 40px;
+  display: inline-block;
+  border-radius: 48px;
+}
+.about .info-ico:hover {
+  font-weight: bold !important;
+}
+
+.github {
+  font-size: 0;
+  display: inline-block;
+  padding: 6px;
+}
+
+.popup {
+  display: block;
+  position: absolute;
+  top: 36px;
+  right: 24px;
+  z-index: 999;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  border: 2px solid var(--black);
+  padding: 24px;
+  background-color: #fff;
+  width: 220px;
+}
+.popup .author {
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  margin: 0px 0 12px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+.popup .author-desc {
+  font-size: 15px;
+  font-style: normal;
+  line-height: 1.4;
+  color: #606060;
+}
+.popup .author img {
+  margin-right: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 48px;
+  display: inline-block;
+}
+.popup p {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.5;
+  padding: 2px;
+  text-align: center;
+  margin: -8px auto 8px;
+}
+.popup p span {
+  opacity: 0.75;
+}
+.popup img {
+  width: 148px;
+  height: 148px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+}
+@media only screen and ( max-width: 768px) {
+  .popup img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.donate {
+  margin: 12px 0;
+}
+
+.zanshan {
+  margin: 12px 0 0;
+}
+
+.zanshan p {
+  font-size: 14px;
+  text-align: left;
+  display: block;
+  margin: 12px 0 6px;
+}
+
+img.zanshan-qr {
+  width: 100%;
+  height: auto;
+}
+
+.donate a {
+  display: block;
+  position: relative;
+  outline: none;
+  width: 100%;
+}
+
+.language {
+  position: relative;
+  display: inline-block;
+  margin-left: 4px;
+  color: #606060;
+  text-decoration: none;
+  font-size: 12px;
+  display: inline-block;
+  z-index: 999;
+}
+
+.language a {
+  position: relative;
+  font-size: 14px;
+  color: #606060;
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px;
+  outline: none;
+}
+
+.language a.active {
+  font-size: 16px;
+  color: #33322E;
+  font-weight: 600;
+}
+
+.social {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 12px 0;
+}
+
+.social-link {
+  opacity: 0.65;
+  outline: none;
+}
+
+.social-link:hover {
+  opacity: 1;
+}
+
+.social-link img {
+  fill: #33322E;
+  width: auto;
+  height: 20px;
+  color: #33322E;
+}
+
+.ic-social {
+  fill: #33322E;
+  width: auto;
+  height: 20px;
+}
+
+.inspiration {
+  position: relative;
+  text-align: left;
+  font-style: normal;
+  display: block;
+  margin: 6px auto 0px;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 0.36px;
+  color: #606060;
+}
+
+a.inspiration:focus {
+  -webkit-user-modify: unset;
+}
+
+.inspiration img {
+  display: inline-block;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+}
+
+.side-bar {
+  position: absolute;
+  left: calc(100% + 28px);
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: var(--border);
+  background: #fff;
+  border-radius: var(--border-radius);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  text-align: center;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  overflow: hidden;
+  z-index: 999;
+  user-select: none;
+}
+@media only screen and ( max-width: 768px) {
+  .side-bar {
+    position: fixed !important;
+    top: unset;
+    bottom: 108px;
+    left: unset;
+    right: -2px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.action-download:hover, .action-download.selected {
+  background: #f8d966;
+}
+
+.action-import:hover, .action-import.selected {
+  background: #f8d966;
+}
+
+@media only screen and (max-width: 768px) {
+  .todo-list {
+    min-height: 480px;
+  }
+}
+.side-bar:hover {
+  -webkit-box-shadow: unset !important;
+          box-shadow: unset !important;
+}
+
+.side-shortcut {
+  display: block;
+  width: 100%;
+}
+
+.shortcut-switch {
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+}
+@media only screen and ( max-width: 768px) {
+  .shortcut-switch {
+    font-size: 14px;
+  }
+  .shortcut-switch .shortcut-name {
+    display: none !important;
+  }
+}
+
+.shortcut-switch span {
+  padding: 10px 14px;
+  display: block;
+}
+
+.shortcut-title {
+  background: var(--completed);
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom: var(--border);
+  width: 100%;
+  font-weight: bold;
+  user-select: none;
+}
+
+span.shortcut-name {
+  display: none;
+}
+
+.todo-footer-box {
+  position: relative;
+  height: 100%;
+}
+@media only screen and ( max-width: 768px) {
+  .fold {
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    overflow: hidden;
+    padding: 0;
+  }
+  .fold .shortcut-switch span {
+    border: 0;
+    padding: 12px 16px;
+  }
+}
+.fold ~ .todo-footer-box {
+  display: none;
+}
+.fold .shortcut-title {
+  background: var(--deleted);
+}
+.fold span.shortcut-name {
+  display: block;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+}
+
+.todo-func-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 14px;
+  padding: 0;
+}
+.todo-func-list li {
+  cursor: pointer;
+  margin: 0 auto;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  width: 100%;
+}
+@media only screen and ( max-width: 768px) {
+  .todo-func-list li {
+    margin: 0;
+    display: inline-block;
+  }
+}
+
+.todo-func-list li input {
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
+  border-top: 1px solid var(--black);
+  -webkit-transform: unset !important;
+      -ms-transform: unset !important;
+          transform: unset !important;
+}
+
+.todo-func-list.filter li:first-child input {
+  border: 0;
+}
+
+.todo-func-list li:first-child {
+  min-width: 60px;
+  font-weight: 400;
+  border: 0;
+}
+@media only screen and ( max-width: 768px) {
+  .todo-func-list li:first-child {
+    display: block;
+  }
+}
+
+.todo-func-list li:last-child {
+  border: 0;
+  margin-right: 0;
+}
+
+.filter {
+  width: 100%;
+}
+
+.completed {
+  background: var(--bg-completed);
+  color: var(--font-color-complete);
+  text-decoration: line-through;
+}
+
+.deleted {
+  background: var(--bg-deleted);
+}
+
+.empty {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: headShake;
+  animation-name: headShake;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+.selected {
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  -webkit-transform: translate(-2px, -2px);
+      -ms-transform: translate(-2px, -2px);
+          transform: translate(-2px, -2px);
+}
+
+.action-showAll:hover,
+.action-showAll.selected {
+  background: var(--bg-submit);
+}
+
+.action-progress:hover,
+.action-progress.selected {
+  background: var(--normal);
+}
+
+.action-completed:hover,
+.action-completed.selected,
+.completed-all:hover {
+  background: var(--completed);
+}
+
+.action-progress:hover,
+.action-progress.selected {
+  background: var(--normal);
+}
+
+.action-deleted:hover,
+.action-deleted.selected,
+.completed-clear:hover,
+.clear-all:hover {
+  background: var(--deleted);
+}
+
+#panda {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: -72px;
+  bottom: -2px;
+}
+
+.pendulums {
+  position: absolute;
+  width: 50px;
+  height: 72px;
+  right: -56px;
+  bottom: -2px;
+  -webkit-perspective: 640px;
+          perspective: 640px;
+}
+
+.pendulum {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  right: 44%;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateZ(-300px) translateX(-50%);
+          transform: translateZ(-300px) translateX(-50%);
+}
+.pendulum:after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--bg-submit);
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border: 3px solid var(--black);
+}
+
+.pendulum.shadow {
+  display: none;
+  top: 263%;
+  left: -65%;
+  bottom: 0;
+  -webkit-transform-origin: 50% 0;
+      -ms-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-transform: translateX(-50%) scaleY(-1) scaleZ(2) rotateY(-30deg) rotateX(-75deg) translateZ(300px);
+          transform: translateX(-50%) scaleY(-1) scaleZ(2) rotateY(-30deg) rotateX(-75deg) translateZ(300px);
+}
+
+.pendulum .bar {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: -5px;
+  display: block;
+  width: 26px;
+  height: 30px;
+  background: #d0f4f0;
+  border: 3px solid #33322E;
+  border-radius: 15px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.pendulum .string {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 3px;
+  height: 72px;
+  background: var(--black);
+}
+
+.pendulum .weight {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f8d966;
+  border: 3px solid #33322E;
+}
+
+.pendulum .motion {
+  position: absolute;
+  height: 90px;
+  width: 50px;
+  -webkit-transform-origin: 50% 10px;
+      -ms-transform-origin: 50% 10px;
+          transform-origin: 50% 10px;
+  -webkit-animation: swing 1800ms infinite ease-in-out;
+          animation: swing 1800ms infinite ease-in-out;
+}
+
+.pendulum.shadow .bar, .pendulum.shadow .string, .pendulum.shadow .weight {
+  background: #3d3a34;
+}
+
+@-webkit-keyframes swing {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  100% {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+}
+.animated {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+.tips-enter-active {
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+
+.tips-leave-active {
+  -webkit-transition: all 0.35s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.35s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.tips-enter,
+.tips-leave-to {
+  -webkit-transform: translateX(8px);
+      -ms-transform: translateX(8px);
+          transform: translateX(8px);
+  opacity: 0;
+}
+
+@-webkit-keyframes headShake {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  6.5% {
+    -webkit-transform: translateX(-6px) rotateY(-9deg);
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+  18.5% {
+    -webkit-transform: translateX(5px) rotateY(7deg);
+    transform: translateX(5px) rotateY(7deg);
+  }
+  31.5% {
+    -webkit-transform: translateX(-3px) rotateY(-5deg);
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+  43.5% {
+    -webkit-transform: translateX(2px) rotateY(3deg);
+    transform: translateX(2px) rotateY(3deg);
+  }
+  50% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes headShake {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  6.5% {
+    -webkit-transform: translateX(-6px) rotateY(-9deg);
+    transform: translateX(-6px) rotateY(-9deg);
+  }
+  18.5% {
+    -webkit-transform: translateX(5px) rotateY(7deg);
+    transform: translateX(5px) rotateY(7deg);
+  }
+  31.5% {
+    -webkit-transform: translateX(-3px) rotateY(-5deg);
+    transform: translateX(-3px) rotateY(-5deg);
+  }
+  43.5% {
+    -webkit-transform: translateX(2px) rotateY(3deg);
+    transform: translateX(2px) rotateY(3deg);
+  }
+  50% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+.zooming {
+  -webkit-animation: zooming 1.5s ease-in-out infinite;
+          animation: zooming 1.5s ease-in-out infinite;
+}
+
+@-webkit-keyframes zooming {
+  0% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  20% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  30% {
+    -webkit-transform: scale(1) rotateZ(135deg);
+            transform: scale(1) rotateZ(135deg);
+  }
+  70% {
+    -webkit-transform: scale(1) rotateZ(135deg);
+            transform: scale(1) rotateZ(135deg);
+  }
+  80% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+}
+
+@keyframes zooming {
+  0% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  20% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  30% {
+    -webkit-transform: scale(1) rotateZ(135deg);
+            transform: scale(1) rotateZ(135deg);
+  }
+  70% {
+    -webkit-transform: scale(1) rotateZ(135deg);
+            transform: scale(1) rotateZ(135deg);
+  }
+  80% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(45deg);
+            transform: scale(1) rotateZ(45deg);
+  }
+}
+.popIn {
+  -webkit-animation-name: popIn;
+  animation-name: popIn;
+}
+
+@-webkit-keyframes popIn {
+  0% {
+    -webkit-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -webkit-transform: scale3d(1.08, 1.08, 1.08);
+    transform: scale3d(1.08, 1.08, 1.08);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  80% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    -webkit-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -webkit-transform: scale3d(1.08, 1.08, 1.08);
+    transform: scale3d(1.08, 1.08, 1.08);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  80% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.popOut {
+  -webkit-animation-name: popOut;
+  animation-name: popOut;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes popOut {
+  0% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1.08, 1.08, 1.08);
+    transform: scale3d(1.08, 1.08, 1.08);
+  }
+  80% {
+    opacity: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+@keyframes popOut {
+  0% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1.08, 1.08, 1.08);
+    transform: scale3d(1.08, 1.08, 1.08);
+  }
+  80% {
+    opacity: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.custom-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(51, 50, 46, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-alert {
+  background: var(--bg-normal);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+  position: relative;
+  font-family: var(--font);
+  animation: popIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.custom-alert-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--font-color);
+}
+
+.custom-alert-content {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.custom-alert-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.custom-alert-btn {
+  padding: var(--btn-small-padding);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background: var(--bg-submit);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.35s;
+}
+
+.custom-alert-btn:hover {
+  box-shadow: var(--box-shadow);
+  transform: translate(-2px, -2px);
+}
+
+.custom-alert-btn.confirm {
+  background: var(--completed);
+}
+
+.custom-alert-btn.cancel {
+  background: var(--deleted);
+}
+
+/* ===== Dark Mode Refresh ===== */
+:root {
+  --body-bg: #070707;
+  --border-radius: 14px;
+  --border: 1px solid #2d2d2d;
+  --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --box-shadow-reverse: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --font-color: #f5f5f5;
+  --placeholder: #777;
+  --font-color-complete: #777;
+  --bg-normal: #151515;
+  --bg-submit: #f5f5f5;
+  --bg-completed: #101f18;
+  --bg-discard: #241313;
+  --bg-deleted: #171717;
+  --bg-edit: #1d1d1d;
+  --normal: #242424;
+  --completed: #35d07f;
+  --deleted: #ff5f56;
+  --black: #f5f5f5;
+}
+
+html,
+body {
+  background: #070707;
+  color: var(--font-color);
+}
+
+body {
+  min-height: 100vh;
+}
+
+html {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,.045), transparent 28%),
+    radial-gradient(circle at 85% 85%, rgba(255,255,255,.03), transparent 30%),
+    #070707;
+}
+
+.bg-pattern {
+  background-color: transparent;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 1;
+}
+
+.todo-wrapper {
+  margin: 56px auto;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.title {
+  width: auto;
+  color: #fff;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 0 28px rgba(255,255,255,.12);
+  letter-spacing: 4px;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.title-text {
+  display: inline-block;
+}
+
+.todo-list-box {
+  background: #101010;
+  border: 1px solid #292929;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.55);
+}
+
+.todo-list {
+  padding: 30px;
+}
+
+.add-content {
+  background: #141414;
+  color: #fff;
+  border: 1px solid #303030;
+  box-shadow: none;
+}
+
+.add-content:focus {
+  border-color: #777;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+}
+
+.submit-btn {
+  background: #fff;
+  color: #080808;
+  border-left: 1px solid #303030;
+  font-weight: 800;
+}
+
+.submit-btn:hover {
+  background: #dcdcdc;
+}
+
+.todo-list li {
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.todo-list li:hover {
+  border-color: #444;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+.todo-content {
+  background: #181818;
+  color: #f5f5f5;
+}
+
+.todo-content:hover {
+  background: #1c1c1c;
+}
+
+.todo-btn {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.todo-btn:hover {
+  background: #222;
+  box-shadow: none;
+}
+
+.btn-edit-submit {
+  background: #242424;
+}
+
+.btn-delete {
+  background: #111;
+}
+
+.btn-delete:hover {
+  background: #3a1717;
+}
+
+.btn-finish {
+  background: #111;
+}
+
+.btn-finish:hover {
+  background: #123321;
+  box-shadow: none;
+}
+
+.btn-unfinish {
+  background: #35d07f;
+  border-color: #35d07f;
+}
+
+.bar-message {
+  border-bottom: 1px solid #292929;
+  color: #bbb;
+}
+
+.bar-message:hover {
+  background: #181818;
+}
+
+.bar-bottom {
+  border-top: 1px solid #292929;
+}
+
+.btn-allFinish {
+  background: #173322;
+  color: #8ff0b9;
+  border-right: 1px solid #292929;
+}
+
+.slogan-input,
+.todo-func-list li input {
+  background: #151515;
+  color: #fff;
+}
+
+.completed {
+  background: #101f18;
+  color: #777;
+}
+
+.deleted {
+  background: #241313;
+}
+
+.empty-tips {
+  color: #888;
+}
+
+.popup,
+.side-bar {
+  background: #111;
+  border-color: #2d2d2d;
+  color: #f5f5f5;
+  box-shadow: 0 15px 40px rgba(0,0,0,.5);
+}
+
+.popup .author-desc,
+.inspiration,
+.language,
+.language a {
+  color: #888;
+}
+
+.language a.active {
+  color: #fff;
+}
+
+.shortcut-title {
+  background: #1b1b1b;
+  border-bottom-color: #2d2d2d;
+}
+
+.fold .shortcut-title {
+  background: #351818;
+}
+
+.action-showAll:hover,
+.action-showAll.selected,
+.action-progress:hover,
+.action-progress.selected {
+  background: #252525;
+}
+
+.action-completed:hover,
+.action-completed.selected,
+.completed-all:hover {
+  background: #173322;
+}
+
+.action-deleted:hover,
+.action-deleted.selected,
+.completed-clear:hover,
+.clear-all:hover {
+  background: #351818;
+}
+
+.nav {
+  opacity: .9;
+}
+
+/* Make the decorative elements fit the dark theme */
+.ani-vector span {
+  background-color: #222;
+  border-color: #555;
+}
+
+.pendulum .bar {
+  background: #202020;
+  border-color: #555;
+}
+
+.pendulum .string {
+  background: #555;
+}
+
+.pendulum .weight {
+  background: #fff;
+  border-color: #111;
+}
+
+.pendulum:after {
+  background: #fff;
+  border-color: #111;
+}
+
+@media only screen and (max-width: 768px) {
+  .todo-wrapper {
+    margin: 36px auto 48px;
+  }
+
+  .todo-list {
+    padding: 20px 16px 24px;
+  }
+
+  .title {
+    letter-spacing: 3px;
+  }
+}
+</style>
+        <script>
+            // Automatically detect and switch language
+            const browserLanguage = navigator.language || navigator.userLanguage;
+            const languageCode = browserLanguage.split('-')[0].toLowerCase();
+            if (!localStorage.getItem('uiineed-todos-lang')) localStorage.setItem('uiineed-todos-lang', languageCode);
+            const userLanguage = localStorage.getItem('uiineed-todos-lang');
+            if (userLanguage && userLanguage === "zh") window.location.href = (window.location.pathname === "/") ? 'index-zh.html' : window.location.href.replace('index.html', 'index-zh.html');
+        </script>
+        <script>
+            const nativeAlert = window.alert;
+            window.alert = function(message, title = 'Prompt') {
+                return new Promise((resolve) => {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'custom-alert-overlay';
+                    const alertBox = document.createElement('div');
+                    alertBox.className = 'custom-alert';
+                    alertBox.innerHTML = `
+<div class="custom-alert-title">${title}</div>
+<div class="custom-alert-content">${message}</div>
+<div class="custom-alert-buttons">
+    <button class="custom-alert-btn confirm">OK</button>
+</div>
+                    `;
+                    overlay.appendChild(alertBox);
+                    document.body.appendChild(overlay);
+                    const confirmBtn = alertBox.querySelector('.confirm');
+                    confirmBtn.addEventListener('click', () => {
+                        alertBox.style.animation = 'popOut 0.3s forwards';
+                        setTimeout(() => {
+                            document.body.removeChild(overlay);
+                            resolve(true);
+                        }, 300);
+                    });
+                    overlay.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') confirmBtn.click();
+                    });
+                    confirmBtn.focus();
+                });
+            };
+            const nativeConfirm = window.alert;
+            window.confirm = function(message, title = 'Please Confirm') {
+                return new Promise((resolve) => {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'custom-alert-overlay';
+                    const alertBox = document.createElement('div');
+                    alertBox.className = 'custom-alert';
+                    alertBox.innerHTML = `
+<div class="custom-alert-title">${title}</div>
+<div class="custom-alert-content">${message}</div>
+<div class="custom-alert-buttons">
+    <button class="custom-alert-btn cancel">Cancel</button>
+    <button class="custom-alert-btn confirm">OK</button>
+</div>
+                    `;
+                    overlay.appendChild(alertBox);
+                    document.body.appendChild(overlay);
+                    const confirmBtn = alertBox.querySelector('.confirm');
+                    const cancelBtn = alertBox.querySelector('.cancel');
+                    confirmBtn.addEventListener('click', () => {
+                        alertBox.style.animation = 'popOut 0.3s forwards';
+                        setTimeout(() => {
+                            document.body.removeChild(overlay);
+                            resolve(true);
+                        }, 300);
+                    });
+                    cancelBtn.addEventListener('click', () => {
+                        alertBox.style.animation = 'popOut 0.3s forwards';
+                        setTimeout(() => {
+                            document.body.removeChild(overlay);
+                            resolve(false);
+                        }, 300);
+                    });
+                    overlay.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') cancelBtn.click();
+                    });
+                    cancelBtn.focus();
+                });
+            };
+        </script>
+        <!-- Vue 2.x Todo List -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    </head>
+
+    <body>
+        <div class="bg-pattern"></div>
+        <div class="todo-wrapper">
+            <div id="todo-app" class="todo-app">
+                <div class="container header ">
+                    <div class="todo-input">
+                        <h1 class="title">
+                            <span class="title-text">TODO LIST</span>
+                            <div class="todo-clock" aria-label="Current time">
+                                <div class="clock-face">
+                                    <span class="clock-hand clock-hour"></span>
+                                    <span class="clock-hand clock-minute"></span>
+                                    <span class="clock-hand clock-second"></span>
+                                    <span class="clock-center"></span>
+                                </div>
+                                <span class="clock-time">00:00:00</span>
+                            </div>
+                            <div class="ani-vector">
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </h1>
+                        <div class="add-content-wrapper">
+                            <input
+                                type="text"
+                                rows="3"
+                                class="add-content"
+                                placeholder="Add a to-do item..."
+                                v-model="newTodoTitle"
+                                @keyup.enter="addTodo"
+                                :class='{empty:emptyChecked}'/>
+                            <transition name="tips">
+                                <div class="tips" v-if='emptyChecked' style="color:red">💡Please enter content!</div>
+                            </transition>
+                            <button class="btn submit-btn" type="button" @click="addTodo">Add</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- todo list -->
+                <div class="container main">
+                    <div class="todo-list-box">
+                        <div class="bar-message">
+                            <input
+                                type="button"
+                                class="btn btn-label btn-allFinish"
+                                value="Mark All Done"
+                                @click="markAllAsCompleted"
+                                v-if="todos.length || recycleBin.length"/>
+                            <template>
+                                <div>
+                                    <div v-if="!isEditing" @dblclick="editText" class="bar-message-text">
+                                        {{ slogan }}
+                                    </div>
+                                    <div v-else="v-else">
+                                        <input
+                                            v-model="slogan"
+                                            ref="sloganInput"
+                                            class="slogan-input"
+                                            @keyup.enter="saveText"
+                                            @keyup.esc="cancelText"/>
+                                        <div class="todo-btn btn-edit-submit slogan-btn" @click="saveText"><img
+                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAxOSAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2LjUwODQgMTAuMzEwOUMxNy4yMzI0IDEwLjU4MjMgMTguMDM5NCAxMC4yMTU1IDE4LjMxMDkgOS40OTE1N0MxOC41ODIzIDguNzY3NiAxOC4yMTU1IDcuOTYwNjMgMTcuNDkxNiA3LjY4OTE0TDE2LjUwODQgMTAuMzEwOVpNOC45OTk5IDJMMTAuMTMyMSAxLjE3NjU1QzkuODU1OCAwLjc5NjYxOCA5LjQwNzM1IDAuNTgwNjA1IDguOTM4MDIgMC42MDEzNjhDOC40Njg3IDAuNjIyMTMgOC4wNDEwNyAwLjg3Njg5OSA3Ljc5OTM4IDEuMjc5NzRMOC45OTk5IDJaTTcuNjcxNzUgMTcuNTU3MkM3LjQyNzIyIDE4LjI5MDcgNy44MjM2MiAxOS4wODM2IDguNTU3MTMgMTkuMzI4MUM5LjI5MDY0IDE5LjU3MjcgMTAuMDgzNSAxOS4xNzYzIDEwLjMyOCAxOC40NDI4TDcuNjcxNzUgMTcuNTU3MlpNMS4wOTk2MyA3LjkyNzkzQzAuNTA3NTQxIDguNDI1MTkgMC40MzA2NjkgOS4zMDgyOCAwLjkyNzkzMSA5LjkwMDM3QzEuNDI1MTkgMTAuNDkyNSAyLjMwODI4IDEwLjU2OTMgMi45MDAzNyAxMC4wNzIxTDEuMDk5NjMgNy45Mjc5M1pNMTcuNDkxNiA3LjY4OTE0QzE1LjgwMjMgNy4wNTU2NSAxMy45ODQxIDUuNTAzNiAxMi41MDk5IDMuOTY3OTVDMTEuNzkzIDMuMjIxMjIgMTEuMTkzOSAyLjUxNzQgMTAuNzc0NCAyLjAwMDU2QzEwLjU2NTEgMS43NDI2OSAxMC40MDE3IDEuNTMyNzYgMTAuMjkxOSAxLjM4OTA4QzEwLjIzNyAxLjMxNzI3IDEwLjE5NTYgMS4yNjIxMSAxMC4xNjg2IDEuMjI1OUMxMC4xNTUxIDEuMjA3OCAxMC4xNDUzIDEuMTk0NDQgMTAuMTM5MSAxLjE4NjEyQzEwLjEzNjEgMS4xODE5NSAxMC4xMzQgMS4xNzkwNSAxMC4xMzI4IDEuMTc3NDRDMTAuMTMyMiAxLjE3NjY0IDEwLjEzMTggMS4xNzYxNiAxMC4xMzE3IDEuMTc2MDFDMTAuMTMxNyAxLjE3NTkzIDEwLjEzMTcgMS4xNzU5NCAxMC4xMzE3IDEuMTc2MDNDMTAuMTMxOCAxLjE3NjA3IDEwLjEzMTkgMS4xNzYyIDEwLjEzMTkgMS4xNzYyM0MxMC4xMzIgMS4xNzYzNyAxMC4xMzIxIDEuMTc2NTUgOC45OTk5IDJDNy44Njc2NyAyLjgyMzQ1IDcuODY3ODMgMi44MjM2NyA3Ljg2OCAyLjgyMzlDNy44NjgwOCAyLjgyNDAxIDcuODY4MjYgMi44MjQyNiA3Ljg2ODQyIDIuODI0NDdDNy44Njg3MiAyLjgyNDkgNy44NjkwOSAyLjgyNTQgNy44Njk1MyAyLjgyNTk5QzcuODcwMzkgMi44MjcxOCA3Ljg3MTUgMi44Mjg2OSA3Ljg3Mjg1IDIuODMwNTRDNy44NzU1NCAyLjgzNDIzIDcuODc5MjIgMi44MzkyNCA3Ljg4Mzg1IDIuODQ1NTNDNy44OTMxIDIuODU4MTEgNy45MDYxOSAyLjg3NTgyIDcuOTIyOTggMi44OTgzN0M3Ljk1NjU2IDIuOTQzNDUgOC4wMDQ5OSAzLjAwNzkyIDguMDY3MyAzLjA4OTQ0QzguMTkxODUgMy4yNTIzOSA4LjM3MjE3IDMuNDgzODcgOC42MDAzOCAzLjc2NTA2QzkuMDU1OTMgNC4zMjYzNSA5LjcwNjg1IDUuMDkxMjggMTAuNDkgNS45MDcwNUMxMi4wMTU4IDcuNDk2NCAxNC4xOTc3IDkuNDQ0MzUgMTYuNTA4NCAxMC4zMTA5TDE3LjQ5MTYgNy42ODkxNFpNNy42MTM5NyAyLjE5ODAxQzguMTA2NjkgNS42NDY2OSA4LjM0OTk3IDguODI5MjYgOC4zNDk5NyAxMS41QzguMzQ5OTcgMTQuMjAxNSA4LjEwMDE0IDE2LjI3MjIgNy42NzE3NSAxNy41NTcyTDEwLjMyOCAxOC40NDI4QzEwLjg5OTggMTYuNzI3OCAxMS4xNSAxNC4yOTg2IDExLjE1IDExLjVDMTEuMTUgOC42NzA3NiAxMC44OTMyIDUuMzUzMzEgMTAuMzg1OCAxLjgwMTk5TDcuNjEzOTcgMi4xOTgwMVpNMi45MDAzNyAxMC4wNzIxQzMuODgyMjggOS4yNDc0MiA1LjI5NjM2IDguMDkwMzMgNi42NDM3OSA2LjgzMDFDNy45NzY2NCA1LjU4MzUyIDkuMzQ1ODcgNC4xNDQ1OCAxMC4yMDA0IDIuNzIwMjZMNy43OTkzOCAxLjI3OTc0QzcuMTU0MDIgMi4zNTU0MiA2LjAyMzMxIDMuNTc2NjMgNC43MzExOCA0Ljc4NTEzQzMuNDUzNjQgNS45Nzk5OCAyLjExNzcyIDcuMDcyODkgMS4wOTk2MyA3LjkyNzkzTDIuOTAwMzcgMTAuMDcyMVoiIGZpbGw9IiMzMzMyMkUiLz4KPC9zdmc+Cg=="
+                                            alt="Finish"></div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <ul v-if="!todos.length && showEmptyTips" class="empty-tips">
+                            <li>Add Your First To-Do Item! 📝</li>
+                            <li>Usage Tips 💡:</li>
+                            <li>✔️ Press Enter to submit actions.</li>
+                            <li>✔️ Drag to reorder your to-dos (PC only)</li>
+                            <li>✔️ Double-click to edit slogan and tasks.</li>
+                            <li>✔️ Access quick actions in the right sidebar.</li>
+                            <li>🔒 Your data is stored locally in your browser.</li>
+                            <li>📝 Supports data download and import.
+                            </li>
+                        </ul>
+
+                        <transition-group
+                            name="drag"
+                            class="todo-list"
+                            tag="ul"
+                            mode="in-out"
+                            @before-enter="beforeEnter"
+                            @enter="enter"
+                            @after-enter="afterEnter"
+                            :css="false"
+                            appear="appear">
+
+                            <li
+                                v-for='(todo, index) in filteredTodos'
+                                :key='todo.id'
+                                class='todo-item'
+                                @dragenter="dragenter($event, index)"
+                                @dragover="dragover($event, index)"
+                                @dragstart="dragstart(index)"
+                                :data-delay="index * 150 * delayTime"
+                                v-show="show"
+                                :draggable="!(editedTodo !== null && editedTodo.id === todo.id)">
+                                <div
+                                    class="todo-content"
+                                    :class='{completed:todo.completed}'
+                                    @dblclick="editdTodo(todo)">
+                                    {{todo.title}}</div>
+                                <div
+                                    class="todo-btn btn-finish"
+                                    v-if="!todo.completed"
+                                    @click="markAsCompleted(todo)"></div>
+                                <div
+                                    class="todo-btn btn-unfinish"
+                                    v-if="todo.completed"
+                                    @click="markAsUncompleted(todo)">
+                                    <img
+                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIuMzYzMTcgOS42NzUwNkMxLjU1OTM5IDkuNDc0NDkgMC43NDUyMDQgOS45NjM0OCAwLjU0NDYyOSAxMC43NjczQzAuMzQ0MDU0IDExLjU3MSAwLjgzMzA0NyAxMi4zODUyIDEuNjM2ODMgMTIuNTg1OEwyLjM2MzE3IDkuNjc1MDZaTTguMTU4NzMgMTZMNi43ODA0MSAxNi41OTE4QzcuMDMwOTggMTcuMTc1NCA3LjYyMTk1IDE3LjUzNzkgOC4yNTU3NSAxNy40OTY5QzguODg5NTQgMTcuNDU1OCA5LjQyODc3IDE3LjAyIDkuNjAxOTEgMTYuNDA4OUw4LjE1ODczIDE2Wk0yMi4zMjYxIDMuNDY0MTNDMjMuMTM0NyAzLjI4NDA2IDIzLjY0NDIgMi40ODI1NyAyMy40NjQxIDEuNjczOTVDMjMuMjg0MSAwLjg2NTMyOCAyMi40ODI2IDAuMzU1NzkxIDIxLjY3MzkgMC41MzU4NjZMMjIuMzI2MSAzLjQ2NDEzWk0xLjYzNjgzIDEyLjU4NThDMi4wMjc2NCAxMi42ODMzIDMuMTIyOTkgMTMuMTUxIDQuMjc3OCAxMy45NDI2QzUuNDM5ODggMTQuNzM5MyA2LjM4OTA2IDE1LjY4MDMgNi43ODA0MSAxNi41OTE4TDkuNTM3MDUgMTUuNDA4MkM4LjgxMDk0IDEzLjcxNzEgNy4zMDE1NyAxMi4zNzgzIDUuOTc0MDYgMTEuNDY4MkM0LjYzOTI3IDEwLjU1MzIgMy4yMTM5OSA5Ljg4NzM4IDIuMzYzMTcgOS42NzUwNkwxLjYzNjgzIDEyLjU4NThaTTkuNjAxOTEgMTYuNDA4OUMxMC4xMzU5IDE0LjUyNDQgMTEuNDk0OCAxMS42NTg1IDEzLjY3MjcgOS4wNjM5NUMxNS44NDQ1IDYuNDc2NzUgMTguNzQxNyA0LjI2MjM1IDIyLjMyNjEgMy40NjQxM0wyMS42NzM5IDAuNTM1ODY2QzE3LjI1ODMgMS41MTkyIDEzLjgyNzUgNC4yMTM0MiAxMS4zNzQ5IDcuMTM1MTRDOC45Mjg1MiAxMC4wNDk1IDcuMzY2NzQgMTMuMjkyOSA2LjcxNTU1IDE1LjU5MTFMOS42MDE5MSAxNi40MDg5WiIgZmlsbD0iIzMzMzIyRSIvPgo8L3N2Zz4K"
+                                        alt="Mark as Incomplete"
+                                        class="icon-finish" draggable="false">
+                                </div>
+                                <div
+                                    v-if="todo.removed"
+                                    class="todo-btn btn-restore"
+                                    @click="restoreTodo(todo)">
+                                    <img
+                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxOSAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuMzQ3OTggMi42NTc5MkM3LjcxMTM0IDEuOTEzNDQgNy40MDIzOCAxLjAxNTM1IDYuNjU3OSAwLjY1MTk4OEM1LjkxMzQxIDAuMjg4NjI3IDUuMDE1MzIgMC41OTc1OSA0LjY1MTk2IDEuMzQyMDhMNy4zNDc5OCAyLjY1NzkyWk0xLjUyNiA5LjA4MzMzTDAuMzc1NTcxIDguMTIwNzhDMC4wNzc5NTE2IDguNDc2NDkgLTAuMDM4MzgyIDguOTQ5ODcgMC4wNjA0NjEyIDkuNDAzMDFDMC4xNTkzMDQgOS44NTYxNSAwLjQ2MjIwNiAxMC4yMzgxIDAuODgwOTI0IDEwLjQzNzVMMS41MjYgOS4wODMzM1pNMTQuNTcyNCAxNi41ODkzQzE0LjM0NTYgMTcuMzg2IDE0LjgwNzYgMTguMjE1OCAxNS42MDQ0IDE4LjQ0MjZDMTYuNDAxMiAxOC42Njk0IDE3LjIzMSAxOC4yMDczIDE3LjQ1NzggMTcuNDEwNkwxNC41NzI0IDE2LjU4OTNaTTYuMjUxOTIgMTQuMzMyMUM2LjcxMTQ1IDE1LjAyMTMgNy42NDI3NiAxNS4yMDc2IDguMzMyMDUgMTQuNzQ4MUM5LjAyMTM0IDE0LjI4ODUgOS4yMDc2IDEzLjM1NzIgOC43NDgwOCAxMi42Njc5TDYuMjUxOTIgMTQuMzMyMVpNNC42NTE5NiAxLjM0MjA4QzMuNjc2NiAzLjM0MDQ3IDIuNjAwMzMgNS4wNDUyNSAxLjc2NjU4IDYuMjUxMDhDMS4zNTA1OSA2Ljg1MjcyIDAuOTk3MjYzIDcuMzI2ODUgMC43NTAzODQgNy42NDc2MkMwLjYyNzAwNSA3LjgwNzkzIDAuNTMwMzkyIDcuOTI5NyAwLjQ2NjA0NyA4LjAwOTY5QzAuNDMzODggOC4wNDk2NyAwLjQwOTc5NiA4LjA3OTIgMC4zOTQ0ODIgOC4wOTc4NkMwLjM4NjgyNiA4LjEwNzE4IDAuMzgxMzY0IDguMTEzNzkgMC4zNzgxODMgOC4xMTc2M0MwLjM3NjU5MiA4LjExOTU1IDAuMzc1NTcyIDguMTIwNzcgMC4zNzUxMzMgOC4xMjEzQzAuMzc0OTE0IDguMTIxNTcgMC4zNzQ4NCA4LjEyMTY1IDAuMzc0OTEyIDguMTIxNTdDMC4zNzQ5NDggOC4xMjE1MiAwLjM3NTAyMSA4LjEyMTQ0IDAuMzc1MTMxIDguMTIxM0MwLjM3NTE4NiA4LjEyMTI0IDAuMzc1Mjk2IDguMTIxMTEgMC4zNzUzMjMgOC4xMjEwN0MwLjM3NTQ0MiA4LjEyMDkzIDAuMzc1NTcxIDguMTIwNzggMS41MjYgOS4wODMzM0MyLjY3NjQzIDEwLjA0NTkgMi42NzY1OCAxMC4wNDU3IDIuNjc2NzMgMTAuMDQ1NUMyLjY3NjggMTAuMDQ1NCAyLjY3Njk2IDEwLjA0NTIgMi42NzcwOSAxMC4wNDUxQzIuNjc3MzUgMTAuMDQ0OCAyLjY3NzY1IDEwLjA0NDQgMi42Nzc5OCAxMC4wNDRDMi42Nzg2NSAxMC4wNDMyIDIuNjc5NDYgMTAuMDQyMyAyLjY4MDQyIDEwLjA0MTFDMi42ODIzNCAxMC4wMzg4IDIuNjg0ODYgMTAuMDM1OCAyLjY4Nzk0IDEwLjAzMkMyLjY5NDEyIDEwLjAyNDYgMi43MDI2MSAxMC4wMTQzIDIuNzEzMzMgMTAuMDAxM0MyLjczNDc1IDkuOTc1MTYgMi43NjUwOCA5LjkzNzk1IDIuODAzNjIgOS44OTAwNUMyLjg4MDY3IDkuNzk0MjYgMi45OTA2IDkuNjU1NjEgMy4xMjc3OCA5LjQ3NzM4QzMuNDAyMDEgOS4xMjEwNiAzLjc4NTg3IDguNjA1NjIgNC4yMzQxNyA3Ljk1NzI1QzUuMTI5IDYuNjYzMDggNi4yODk3MiA0LjgyNjIgNy4zNDc5OCAyLjY1NzkyTDQuNjUxOTYgMS4zNDIwOFpNMi4wNDcwNCAxMC40ODk5QzMuNzc2MTcgOS44NDk0MiA1LjczMzE5IDkuMTcyMzEgNy42MzggOC43MjEzN0M5LjU3MDA4IDguMjYzOTkgMTEuMzAyNSA4LjA3NjMxIDEyLjYyODggOC4zMDE3QzEzLjg3NTIgOC41MTM1MiAxNC42Mjg0IDkuMDUwMDggMTUuMDE2MyAxMC4wNDA1QzE1LjQ2MjggMTEuMTgwNyAxNS41MzgzIDEzLjE5NTYgMTQuNTcyNCAxNi41ODkzTDE3LjQ1NzggMTcuNDEwNkMxOC40ODQzIDEzLjgwNDIgMTguNjE2NiAxMS4wMDY3IDE3LjgwOTcgOC45NDY0NkMxNi45NDQyIDYuNzM2MzQgMTUuMTMzNyA1LjY4NDM3IDEzLjEzMTQgNS4zNDQxMUMxMS4yMDkyIDUuMDE3NDMgOS4wMDc5OSA1LjMxNDEzIDYuOTQ2OSA1LjgwMjA2QzQuODU4NTYgNi4yOTY0NCAyLjc2MjgzIDcuMDI1NTggMS4wMDQ5NiA3LjY3NjczTDIuMDQ3MDQgMTAuNDg5OVpNOC43NDgwOCAxMi42Njc5QzcuNTIzMTIgMTAuODMwNSA1LjIyOTM0IDkuMTg1OTMgMi4xNzEwOCA3LjcyOTEzTDAuODgwOTI0IDEwLjQzNzVDMy43NzA2NiAxMS44MTQxIDUuNDc2ODggMTMuMTY5NSA2LjI1MTkyIDE0LjMzMjFMOC43NDgwOCAxMi42Njc5WiIgZmlsbD0iIzMzMzIyRSIvPgo8L3N2Zz4K"
+                                        alt="Restore" draggable="false">
+                                </div>
+                                <div
+                                    class="todo-btn btn-delete"
+                                    v-else="todo.removed"
+                                    @click="removeTodo(todo)">
+                                    <img
+                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNS4wOTkzIDE3Ljc1OTdDMTUuNzk0OSAxOC4yMDk4IDE2LjcyMzUgMTguMDEwOCAxNy4xNzM2IDE3LjMxNTJDMTcuNjIzNiAxNi42MTk3IDE3LjQyNDYgMTUuNjkxMSAxNi43MjkxIDE1LjI0MUMxMy4zMDc5IDEzLjAyNzMgMTAuODIwOSAxMC45OTU5IDguOTIyNTEgOS4wMzczOUM5LjA5NzQyIDguODQ5ODIgOS4yNzI5MSA4LjY2NTcxIDkuNDQ4ODggOC40ODUzNEMxMS44ODY0IDUuOTg2OTIgMTQuMjQ3MiA0LjM4MDY2IDE2LjI5NDQgMy45NzEyMkMxNy4xMDY3IDMuODA4NzUgMTcuNjMzNSAzLjAxODUyIDE3LjQ3MTEgMi4yMDYxOEMxNy4zMDg2IDEuMzkzODQgMTYuNTE4NCAwLjg2NzAxMyAxNS43MDYgMS4wMjk0OEMxMi43NTMyIDEuNjIwMDUgOS44NjQwNiAzLjc2Mzc5IDcuMzAxNTQgNi4zOTAzN0M3LjE4MTUxIDYuNTEzNCA3LjA2MTgxIDYuNjM3ODkgNi45NDI0OSA2Ljc2Mzc1QzUuNDIwMDEgNC44MDQzMyA0LjM3MDU4IDIuODc2MzIgMy40MjU5MSAwLjg2MzE2NEMzLjA3Mzk5IDAuMTEzMjAyIDIuMTgwNzMgLTAuMjA5NDc1IDEuNDMwNzcgMC4xNDI0NDVDMC42ODA4MDkgMC40OTQzNjUgMC4zNTgxMzIgMS4zODc2MiAwLjcxMDA1MSAyLjEzNzU4QzEuODIwODggNC41MDQ4MSAzLjA3ODk5IDYuNzY1MTEgNC45MjkzMiA5LjA1MzA2QzMuMjIyMDYgMTEuMTM0MSAxLjYyNjY5IDEzLjQzMjggMC4yMjI3MjMgMTUuNzE0MkMtMC4yMTE0NTMgMTYuNDE5NyAwLjAwODUyNzUyIDE3LjM0MzcgMC43MTQwNjQgMTcuNzc3OEMxLjQxOTYgMTguMjEyIDIuMzQzNTIgMTcuOTkyIDIuNzc3NyAxNy4yODY1QzQuMDQ4MTkgMTUuMjIyIDUuNDY0MDUgMTMuMTcyNiA2Ljk1NTU5IDExLjMxNjhDOC45ODUgMTMuMzc2NSAxMS41OTU5IDE1LjQ5MjggMTUuMDk5MyAxNy43NTk3WiIgZmlsbD0iIzMzMzIyRSIvPgo8L3N2Zz4K"
+                                        alt="Delete" draggable="false">
+                                </div>
+
+                                <div
+                                    class="edit-todo-wrapper"
+                                    v-if="editedTodo !== null && editedTodo.id === todo.id">
+                                    <input
+                                        type="text"
+                                        class="edit-todo"
+                                        value="Edit Todo..."
+                                        v-if="editedTodo !== null && editedTodo.id === todo.id"
+                                        v-model="todo.title"
+                                        v-focus="true"
+                                        @keyup.enter="editDone(todo)"
+                                        @keyup.esc="cancelEdit(todo)"
+                                        @dragstart.stop.prevent
+                                        @mousedown.stop />
+                                    <div class="todo-btn btn-edit-submit" @click="editDone(todo)">
+                                        <img
+                                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAxOSAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2LjUwODQgMTAuMzEwOUMxNy4yMzI0IDEwLjU4MjMgMTguMDM5NCAxMC4yMTU1IDE4LjMxMDkgOS40OTE1N0MxOC41ODIzIDguNzY3NiAxOC4yMTU1IDcuOTYwNjMgMTcuNDkxNiA3LjY4OTE0TDE2LjUwODQgMTAuMzEwOVpNOC45OTk5IDJMMTAuMTMyMSAxLjE3NjU1QzkuODU1OCAwLjc5NjYxOCA5LjQwNzM1IDAuNTgwNjA1IDguOTM4MDIgMC42MDEzNjhDOC40Njg3IDAuNjIyMTMgOC4wNDEwNyAwLjg3Njg5OSA3Ljc5OTM4IDEuMjc5NzRMOC45OTk5IDJaTTcuNjcxNzUgMTcuNTU3MkM3LjQyNzIyIDE4LjI5MDcgNy44MjM2MiAxOS4wODM2IDguNTU3MTMgMTkuMzI4MUM5LjI5MDY0IDE5LjU3MjcgMTAuMDgzNSAxOS4xNzYzIDEwLjMyOCAxOC40NDI4TDcuNjcxNzUgMTcuNTU3MlpNMS4wOTk2MyA3LjkyNzkzQzAuNTA3NTQxIDguNDI1MTkgMC40MzA2NjkgOS4zMDgyOCAwLjkyNzkzMSA5LjkwMDM3QzEuNDI1MTkgMTAuNDkyNSAyLjMwODI4IDEwLjU2OTMgMi45MDAzNyAxMC4wNzIxTDEuMDk5NjMgNy45Mjc5M1pNMTcuNDkxNiA3LjY4OTE0QzE1LjgwMjMgNy4wNTU2NSAxMy45ODQxIDUuNTAzNiAxMi41MDk5IDMuOTY3OTVDMTEuNzkzIDMuMjIxMjIgMTEuMTkzOSAyLjUxNzQgMTAuNzc0NCAyLjAwMDU2QzEwLjU2NTEgMS43NDI2OSAxMC40MDE3IDEuNTMyNzYgMTAuMjkxOSAxLjM4OTA4QzEwLjIzNyAxLjMxNzI3IDEwLjE5NTYgMS4yNjIxMSAxMC4xNjg2IDEuMjI1OUMxMC4xNTUxIDEuMjA3OCAxMC4xNDUzIDEuMTk0NDQgMTAuMTM5MSAxLjE4NjEyQzEwLjEzNjEgMS4xODE5NSAxMC4xMzQgMS4xNzkwNSAxMC4xMzI4IDEuMTc3NDRDMTAuMTMyMiAxLjE3NjY0IDEwLjEzMTggMS4xNzYxNiAxMC4xMzE3IDEuMTc2MDFDMTAuMTMxNyAxLjE3NTkzIDEwLjEzMTcgMS4xNzU5NCAxMC4xMzE3IDEuMTc2MDNDMTAuMTMxOCAxLjE3NjA3IDEwLjEzMTkgMS4xNzYyIDEwLjEzMTkgMS4xNzYyM0MxMC4xMzIgMS4xNzYzNyAxMC4xMzIxIDEuMTc2NTUgOC45OTk5IDJDNy44Njc2NyAyLjgyMzQ1IDcuODY3ODMgMi44MjM2NyA3Ljg2OCAyLjgyMzlDNy44NjgwOCAyLjgyNDAxIDcuODY4MjYgMi44MjQyNiA3Ljg2ODQyIDIuODI0NDdDNy44Njg3MiAyLjgyNDkgNy44NjkwOSAyLjgyNTQgNy44Njk1MyAyLjgyNTk5QzcuODcwMzkgMi44MjcxOCA3Ljg3MTUgMi44Mjg2OSA3Ljg3Mjg1IDIuODMwNTRDNy44NzU1NCAyLjgzNDIzIDcuODc5MjIgMi44MzkyNCA3Ljg4Mzg1IDIuODQ1NTNDNy44OTMxIDIuODU4MTEgNy45MDYxOSAyLjg3NTgyIDcuOTIyOTggMi44OTgzN0M3Ljk1NjU2IDIuOTQzNDUgOC4wMDQ5OSAzLjAwNzkyIDguMDY3MyAzLjA4OTQ0QzguMTkxODUgMy4yNTIzOSA4LjM3MjE3IDMuNDgzODcgOC42MDAzOCAzLjc2NTA2QzkuMDU1OTMgNC4zMjYzNSA5LjcwNjg1IDUuMDkxMjggMTAuNDkgNS45MDcwNUMxMi4wMTU4IDcuNDk2NCAxNC4xOTc3IDkuNDQ0MzUgMTYuNTA4NCAxMC4zMTA5TDE3LjQ5MTYgNy42ODkxNFpNNy42MTM5NyAyLjE5ODAxQzguMTA2NjkgNS42NDY2OSA4LjM0OTk3IDguODI5MjYgOC4zNDk5NyAxMS41QzguMzQ5OTcgMTQuMjAxNSA4LjEwMDE0IDE2LjI3MjIgNy42NzE3NSAxNy41NTcyTDEwLjMyOCAxOC40NDI4QzEwLjg5OTggMTYuNzI3OCAxMS4xNSAxNC4yOTg2IDExLjE1IDExLjVDMTEuMTUgOC42NzA3NiAxMC44OTMyIDUuMzUzMzEgMTAuMzg1OCAxLjgwMTk5TDcuNjEzOTcgMi4xOTgwMVpNMi45MDAzNyAxMC4wNzIxQzMuODgyMjggOS4yNDc0MiA1LjI5NjM2IDguMDkwMzMgNi42NDM3OSA2LjgzMDFDNy45NzY2NCA1LjU4MzUyIDkuMzQ1ODcgNC4xNDQ1OCAxMC4yMDA0IDIuNzIwMjZMNy43OTkzOCAxLjI3OTc0QzcuMTU0MDIgMi4zNTU0MiA2LjAyMzMxIDMuNTc2NjMgNC43MzExOCA0Ljc4NTEzQzMuNDUzNjQgNS45Nzk5OCAyLjExNzcyIDcuMDcyODkgMS4wOTk2MyA3LjkyNzkzTDIuOTAwMzcgMTAuMDcyMVoiIGZpbGw9IiMzMzMyMkUiLz4KPC9zdmc+Cg=="
+                                            alt="提交" draggable="false">
+                                    </div>
+                                </div>
+                            </li>
+                        </transition-group>
+                        <div class="bar-message bar-bottom">
+                            <div class="bar-message-text">
+                                <span v-if="leftTodosCount">{{leftTodosCount}} items remaining</span>
+                                <span v-else-if="completedTodosCount">All completed, good job!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer side-bar">
+                        <div class="side-shortcut" @click="shortCutAction()" :class="{fold: isShow}">
+                            <div class="shortcut-switch">
+                                <span class="shortcut-title">{{shortCut}}</span>
+                                <span class="shortcut-name">Quicks
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="todo-footer-box">
+                            <ul class="todo-func-list filter">
+                                <!-- <li v-if="todos.length || recycleBin.length">Filter：</li> -->
+                                <!-- <li v-if="hasRemovedTodo" ><input type="button" value="Back"
+                                v-if="hasRemovedTodo" @click="restoreTodo()"></li> -->
+                                <li >
+                                    <input
+                                        class="btn-small action-showAll"
+                                        type="button"
+                                        value="All"
+                                        :class="{selected: intention === 'all'}"
+                                        @click="intention ='all'"></li>
+                                <li v-if="completedTodosCount"><input
+                                    class="btn-small action-progress"
+                                    type="button"
+                                    value="In Progress"
+                                    v-if="leftTodosCount"
+                                    :class="{selected: intention === 'ongoing'}"
+                                    @click="intention ='ongoing'"></li>
+                                <li v-if="completedTodosCount">
+                                    <input
+                                        class="btn-small action-completed"
+                                        type="button"
+                                        value="Completed"
+                                        v-if="completedTodosCount"
+                                        :class="{selected: intention === 'completed'}"
+                                        @click="intention='completed'">
+                                </li>
+                                <li v-if="recycleBin.length">
+                                    <input
+                                        class="btn-small action-deleted"
+                                        type="button"
+                                        v-if="recycleBin.length"
+                                        :class="{selected: intention === 'removed'}"
+                                        value="Trash"
+                                        @click="intention='removed'"/>
+                                </li>
+                            </ul>
+                            <ul class="todo-func-list batch">
+                                <!-- <li v-if="todos.length"></li> -->
+                                <li v-if="leftTodosCount">
+                                    <input
+                                        type="button"
+                                        class="btn-small completed-all"
+                                        v-if="leftTodosCount"
+                                        value="Finish all"
+                                        @click="markAllAsCompleted">
+                                </li>
+                                <li v-if="completedTodosCount">
+                                    <input
+                                        type="button"
+                                        value="Clear Completed"
+                                        class="btn-small completed-clear"
+                                        v-if="completedTodosCount"
+                                        @click="clearCompleted">
+                                </li>
+                                <li v-if="todos.length"><input
+                                    type="button"
+                                    class="btn-small clear-all"
+                                    value="Clear All"
+                                    @click="clearAll">
+                                </li>
+                            </ul>
+                            <ul class="todo-func-list datasave">
+                                <li v-if="leftTodosCount">
+                                    <input
+                                        type="button"
+                                        value="Export data"
+                                        class="btn-small  action-download"
+                                        id="download"
+                                        onclick="handleClickDownload()"></input>
+                                </li>
+                                <li>
+                                    <input
+                                        value="Import(txt/json)"
+                                        type="button"
+                                        class="btn-small action-import"
+                                        id="import"/>
+                                    <!-- <input type="file" id="import-file" accept=".txt,.json"
+                                    style="display:none"> -->
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Custom Info -->
+                <div class="nav">
+                    <div class="github">
+                        <a href="https://github.com/ricocc/uiineed-todo-list?ref=opensource-todo" target="_blank" class="social-link" draggable="false">
+                            <img src="public/img/social/github.svg" class="ic-social" alt="" draggable="false">
+                        </a>
+                    </div>
+            </div>
+        </div>
+        <script>
+            // localStorage operations
+            var STORAGE_KEY = 'uiineed-todos';
+            var todoStorage = {
+                fetch: function() {
+                    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                    todos.forEach(function(todo, index) {
+                        todo.id = index;
+                    });
+                    todoStorage.uid = todos.length;
+                    return todos;
+                },
+                save: function(todos) {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+                }
+            }
+        </script>
+        <script>
+            // Vue instance initialization
+            var app = new Vue({
+                el: '#todo-app',
+                data: function() {
+                    return {
+                        todos: todoStorage.fetch(),
+                        newTodoTitle: '',
+                        editedTodo: null,
+                        intention: 'all', // Default: all
+                        checkEmpty: false,
+                        recycleBin: [],
+                        dragIndex: '',
+                        enterIndex: '',
+                        show: true,
+                        delayTime: '1',
+                        isShow: false,
+                        shortCut: 'OPEN✨',
+                        popShow: true,
+                        windowWidth: document.documentElement.clientWidth,
+                        slogan: this.getSlogan(),
+                        isEditing: false,
+                        originalSlogan: ""
+                    };
+                },
+                watch: {
+                    windowWidth(val) {
+                        let that = this;
+                    },
+                    todos: {
+                        handler: function(todos) {
+                            todoStorage.save(todos);
+                        },
+                        deep: true
+                    }
+                },
+                methods: {
+                    editText() {
+                        this.originalSlogan = this.slogan;
+                        this.isEditing = true;
+                        this.$nextTick(() => {
+                            this.$refs.sloganInput.focus();
+                        });
+                    },
+                    saveText() {
+                        this.isEditing = false;
+                        localStorage.setItem('uiineed-slogan', this.slogan);
+                    },
+                    cancelText() {
+                        this.slogan = this.originalSlogan;
+                        this.isEditing = false;
+                    },
+                    getSlogan() {
+                        return localStorage.getItem('uiineed-slogan') || "Act Now, Simplify Life.☕";
+                    },
+                    contorlScreen: function() {
+                        if (this.windowWidth < 768) {
+                            this.isShow = !this.isShow;
+                            return this.shortCut = 'Filter';
+                        }
+                    },
+                    togglePop: function() {
+                        this.popShow = !this.popShow;
+                    },
+                    shortCutAction: function() {
+                        this.isShow = !this.isShow;
+                        if (this.isShow) {
+                            return this.shortCut = '＝';
+                        } else {
+                            return this.shortCut = 'OPEN✨';
+                        }
+                    },
+                    shuffle: function() {
+                        this.filteredTodos = _.shuffle(this.filteredTodos);
+                    },
+                    addTodo: function(e) {
+                        if (this.newTodoTitle === '') {
+                            this.checkEmpty = true;
+                            return;
+                        }
+                        this.todos.unshift({
+                            id: todoStorage.uid++,
+                            title: this.newTodoTitle,
+                            completed: false,
+                            removed: false
+                        });
+                        this.newTodoTitle = '';
+                        this.checkEmpty = false;
+                        this.delayTime = '0';
+                    },
+                    markAsCompleted: function(todo) {
+                        todo.completed = true;
+                    },
+                    markAsUncompleted: function(todo) {
+                        todo.completed = false;
+                    },
+                    markAllAsCompleted: function() {
+                        confirm('Confirm to mark all as completed?').then((confirmed) => {
+                            if (confirmed) {
+                                this.todos.map(function(todo) {
+                                    if (!todo.completed) todo.completed = true;
+                                });
+                            }
+                        }); 
+                    },
+
+                    removeTodo: function(todo) {
+                        let removedTodo = this.todos.splice(this.todos.indexOf(todo), 1)[0];
+                        removedTodo.removed = true;
+                        this.recycleBin.unshift(removedTodo);
+                    },
+                    restoreTodo: function(todo) {
+                        todo.removed = false;
+                        this.todos.unshift(todo);
+                        let pos = this.recycleBin.indexOf(todo);
+                        this.recycleBin.splice(pos, 1);
+                    },
+                    editdTodo: function(todo) {
+                        this.editedTodo = {
+                            id: todo.id,
+                            title: todo.title
+                        }
+                    },
+                    lineFeed: function(event) {
+                        if (event.keyCode == 13 && event.ctrlKey) {
+                            this.newTodoTitle = this.newTodoTitle + '\n';
+                        } else {
+                            if (this.newTodoTitle === '') {
+                                this.checkEmpty = true;
+                                return;
+                            }
+                            this.todos.unshift({
+                                id: todoStorage.uid++,
+                                title: this.newTodoTitle,
+                                completed: false,
+                                removed: false
+                            });
+                            this.newTodoTitle = '';
+                            this.checkEmpty = false;
+                            this.delayTime = '0';
+                        }
+                    },
+                    editDone: function(todo) {
+                        if (todo.title === '') {
+                            this.removeTodo(todo);
+                        }
+                        this.editedTodo = null;
+                    },
+                    cancelEdit: function(todo) {
+                        todo.title = this.editedTodo.title;
+                        this.editedTodo = null;
+                    },
+                    clearCompleted: function() {
+                        confirm('Confirm to clear all completed items?').then((confirmed) => {
+                            if (confirmed) {
+                                this.completedTodos.map(todo => todo.removed = true);
+                                this.recycleBin.unshift(...this.completedTodos);
+                                this.todos = this.leftTodos;
+                            }
+                        });
+                    },
+                    clearAll: function() {
+                        confirm('Confirm to clear all todo items?').then((confirmed) => {
+                            if (confirmed) {
+                                this.todos.map(todo => todo.removed = true);
+                                this.recycleBin.unshift(...this.todos);
+                                this.todos = [];
+                            }
+                        });
+                    },
+
+                    // Drag Operations
+                    dragstart: function(index) {
+                        this.dragIndex = index;
+                    },
+                    dragenter: function(e, index) {
+                        e.preventDefault();
+                        // Avoid source object triggering its own dragenter event
+                        if (this.dragIndex !== index) {
+                            const source = this.filteredTodos[this.dragIndex];
+                            this.filteredTodos.splice(this.dragIndex, 1);
+                            this.filteredTodos.splice(index, 0, source);
+                            // After reordering, target index becomes source index
+                            this.dragIndex = index;
+                        }
+                    },
+                    dragover: function(e, index) {
+                        e.preventDefault();
+                    },
+                    // JS hooks for animation
+                    beforeEnter(dom) {
+                        dom.classList.add('drag-enter-active');
+                    },
+                    enter(dom, done) {
+                        let delay = dom.dataset.delay;
+                        setTimeout(() => {
+                            this.delayTime = '1';
+                            dom.classList.remove('drag-enter-active');
+                            dom.classList.add('drag-enter-to');
+                            let transitionend = window.ontransitionend
+                                ? "transitionend"
+                                : "webkitTransitionEnd";
+                            dom.addEventListener(transitionend, function onEnd() {
+                                dom.removeEventListener(transitionend, onEnd);
+                                done();
+                                // Call done() to tell Vue animation is complete, triggering afterEnter hook
+                            })
+                        }, delay);
+                    },
+                    afterEnter(dom) {
+                        dom.classList.remove('drag-enter-to');
+                    },
+                    saveLanguage(lang) {
+                        localStorage.setItem('uiineed-todos-lang', lang);
+                    }
+                },
+
+                mounted() {
+                    this.show = true;
+                    var that = this;
+                    this.contorlScreen();
+                    // Attach window.onresize event to mounted function
+                    window.onresize = () => {
+                        return (() => {
+                            window.fullWidth = document.documentElement.clientWidth;
+                            that.windowWidth = window.fullWidth; // width
+                        })()
+                    };
+                },
+
+                directives: {
+                    focus: {
+                        inserted: function(el) {
+                            el.focus()
+                        }
+                    }
+                },
+
+                computed: {
+                    emptyChecked: function() {
+                        return this.newTodoTitle.length === 0 && this.checkEmpty
+                    },
+                    leftTodos: function() {
+                        return this.todos.filter(function(todo) {
+                            return !todo.completed
+                        })
+                    },
+                    leftTodosCount: function() {
+                        return this.leftTodos.length
+                    },
+                    hasRemovedTodo: function() {
+                        return !!this.removedTodo
+                    },
+                    completedTodos: function() {
+                        return this.todos.filter(function(todo) {
+                            return todo.completed
+                        })
+                    },
+                    completedTodosCount: function() {
+                        return this.completedTodos.length
+                    },
+                    filteredTodos: function() {
+                        if (this.intention === 'ongoing') {
+                            return this.leftTodos
+                        } else if (this.intention === 'completed') {
+                            return this.completedTodos
+                        } else if (this.intention === 'removed') {
+                            return this.recycleBin
+                        } else {
+                            return this.todos
+                        }
+                    },
+                    showEmptyTips() {
+                        return this.filteredTodos.length === 0 && this.intention !== 'removed';
+                    }
+                }
+                })
+        </script>
+        <script>
+            // Fetch data from localStorage
+            var fetchedTodos = todoStorage.fetch();
+
+            const handleClickDownload = () => {
+                const todosText = JSON.stringify(todoStorage.fetch(), null, 2);
+                const date = new Date().toISOString().replace(/-|:|\.\d+/g, '');
+                const fileName = `todos-${date.slice(0, 8)}-${date.slice(9, 15)}.txt`;
+                
+                const element = document.createElement('a');
+                element.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(todosText);
+                element.download = fileName;
+                
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            };
+
+            // Import file
+            let tempFileInput = null; // Store dynamically created file input element
+            document.getElementById('import').addEventListener('click', function() {
+                if (!tempFileInput) {
+                    tempFileInput = document.createElement('input');
+                    tempFileInput.type = 'file';
+                    tempFileInput.accept = '.txt,.json';
+                    tempFileInput.style.display = 'none';
+                    this.parentNode.appendChild(tempFileInput);
+
+                    tempFileInput.addEventListener('change', function(event) {
+                        var file = event.target.files[0];
+                        if (!file) return alert('No file selected!', 'Error');
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var content = e.target.result;
+                            try {
+                                var importedData;
+                                if (file.type === 'application/json') {
+                                    // If JSON file, parse directly
+                                    importedData = JSON.parse(content);
+                                } else if (file.type === 'text/plain') {
+                                    // If TXT file, try to parse as JSON
+                                    importedData = JSON.parse(content.trim());
+                                } else {
+                                    throw new Error('Unsupported file type');
+                                }
+                                // Get current data from localStorage
+                                var currentTodos = todoStorage.fetch() || [];
+                                // Get current data count for new unique ids
+                                var nextIdIndex = currentTodos.length;
+                                // Update ids for imported data
+                                importedData.forEach((item, index) => {
+                                    item.id = nextIdIndex + index;
+                                });
+                                // Append imported data to existing data
+                                var updatedTodos = currentTodos.concat(importedData);
+                                // Update localStorage
+                                todoStorage.save(updatedTodos);
+                                // Update page content
+                                updatePageContent(updatedTodos);
+                                alert('File imported successfully, data has been appended!');
+                            } catch (error) {
+                                alert('File parsing error, please ensure correct format: ' + error.message, 'Error');
+                            }
+                        };
+                        reader.onerror = function(e) {
+                            alert('Error reading file: ' + e.target.error.name, 'Error');
+                        };
+                        reader.readAsText(file);
+                        this.parentNode.removeChild(tempFileInput);
+                        tempFileInput = null;
+                    });
+                }
+                tempFileInput.click();
+            });
+
+            function updatePageContent(data) {
+                app.todos = data;
+            }
+
+        </script>
+    </body>
+
+</html>
+<style id="todo-clock-refresh">
+/* Clean clock replacement for the removed pendulums */
+.todo-input .title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.todo-clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    vertical-align: middle;
+}
+
+.clock-face {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border: 2px solid rgba(255,255,255,.85);
+    border-radius: 50%;
+    background: #0d0d0d;
+}
+
+.clock-hand {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: 2px;
+    transform-origin: 50% 100%;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.clock-hour { height: 9px; }
+.clock-minute { height: 12px; }
+.clock-second { height: 14px; background: #8cffb0; width: 1px; }
+
+.clock-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #8cffb0;
+    transform: translate(-50%, -50%);
+}
+
+.clock-time {
+    min-width: 66px;
+    color: rgba(255,255,255,.8);
+    font: 600 12px/1.1 monospace;
+    letter-spacing: .5px;
+}
+
+@media (max-width: 600px) {
+    .todo-input .title { gap: 8px; }
+    .todo-clock { margin-left: 0; padding: 5px 8px; }
+    .clock-face { width: 28px; height: 28px; }
+    .clock-time { min-width: 58px; font-size: 10px; }
+}
+</style>
+<script>
+(function () {
+    function updateTodoClock() {
+        const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const sec = now.getSeconds();
+
+        const hour = (h % 12) * 30 + m * 0.5;
+        const minute = m * 6 + sec * 0.1;
+        const second = sec * 6;
+
+        const hourHand = document.querySelector('.clock-hour');
+        const minuteHand = document.querySelector('.clock-minute');
+        const secondHand = document.querySelector('.clock-second');
+        const digital = document.querySelector('.clock-time');
+
+        if (hourHand) hourHand.style.transform = 'rotate(' + hour + 'deg)';
+        if (minuteHand) minuteHand.style.transform = 'rotate(' + minute + 'deg)';
+        if (secondHand) secondHand.style.transform = 'rotate(' + second + 'deg)';
+
+        if (digital) {
+            digital.textContent = [h, m, sec].map(function (v) {
+                return String(v).padStart(2, '0');
+            }).join(':');
+        }
+    }
+
+    updateTodoClock();
+    setInterval(updateTodoClock, 1000);
+})();
+</script>
